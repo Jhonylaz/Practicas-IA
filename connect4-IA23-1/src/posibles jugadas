@@ -1,0 +1,59 @@
+import Connect4
+import copy
+#funcion que hace la accion
+def accion(val)->list:
+    if game.finished() == 0 and game.possible_plays() != []:
+        game.make_play(player1, val)  
+        return(game)
+    return(game)   
+#viendo todos los posibles casos del turno 1
+player1=True
+estado_inicial=Connect4.connect4()
+turno1=[]
+for i in range(0,7):
+    game =copy.deepcopy(estado_inicial)
+    if game.finished() == 0 and game.possible_plays() != []:
+        turno1.append(accion(i))
+#cambiando de jugador
+if player1:
+    player1 = False
+else:
+    player1 = True        
+#viendo todos los posibles casos del turno 2    
+t2=len(turno1)
+turno2=[]
+for i in range(0,t2):
+    game=copy.deepcopy(turno1[i])
+    if game.finished() == 0 and game.possible_plays() != []:
+        for j in range(0,7):
+            game=copy.deepcopy(turno1[i])
+            turno2.append(accion(j))
+
+#Cambiando de jugador
+if player1:
+    player1 = False
+else:
+    player1 = True
+#viendo todos los posibles casos del turno 3 
+t2=len(turno2)
+turno3=[]
+for i in range(0,t2):
+    game=copy.deepcopy(turno2[i])
+    if game.finished() == 0 and game.possible_plays() != []:   
+        for j in range(0,7):
+            game=copy.deepcopy(turno2[i])
+            turno3.append(accion(j))
+#cambiando de jugador  
+if player1:
+    player1 = False
+else:
+    player1 = True
+# viendo todos los posibles casos del turno 4
+t3=len(turno3)
+turno4=[]
+for i in range(0,t3):
+    game=copy.deepcopy(turno3[i])
+    if game.finished() == 0 and game.possible_plays() != []:
+        for j in range(0,7):
+            game=copy.deepcopy(turno3[i])
+            turno4.append(accion(j))
